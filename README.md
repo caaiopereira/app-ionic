@@ -7,7 +7,16 @@
 	    Passo 06 - Iniciar a Web Api - (comando json-server --watch src/assets/db.json)
 	    Passo 07 - Importar o modulo HttpClientModule no arquivo app.module.ts
 	    Passo 08 - Utilizar o HttpCliente no  arquivo home.page.ts para pegar os dados da Web API
-	    Passo 09 - Utilizar a diretiva *ngFor para criar a lista de compras de forma dinâmica-
+	    Passo 09 - Utilizar a diretiva *ngFor para criar a lista de compras de forma dinâmica
+	    
+	    Aula 04
+	    1 - Desenvolver um serviço de banco de dados
+		Esse serviço deverá permitir que o APP possa consultar, cadastrar e excluir produtos.
+		
+	    2 - Configurar o botão excluir utilizando o serviço que foi criado para deletar dados na Web API
+	    
+	    3 - Configurar o formulário (Alert) utilizado pelo fab-button (Botão de Cadastrar) para cadastrar
+		dados na Web API.
       
 # Comandos
       Ambiente de desenvolvimento: 
@@ -29,8 +38,8 @@
 			-> Entrar na pasta do projeto:  cd pasta_projeto
 			-> Executar o comando:  ionic serve 
     
-    Comando para criar pagina
-		  -> ionic generate page sobre
+    	Comando para criar pagina
+			-> ionic generate page sobre
       
-    Comando para gerar serviço 
-      -> ionic generate service nome_servico
+    	Comando para gerar serviço 
+      		-> ionic generate service nome_servico
