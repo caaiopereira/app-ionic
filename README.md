@@ -18,7 +18,7 @@
 	    3 - Configurar o formulário (Alert) utilizado pelo fab-button (Botão de Cadastrar) para cadastrar
 		dados na Web API.
       
-# Comandos
+# Anotações/Comandos
       Ambiente de desenvolvimento: 
 			-> Vscode
 			-> NodeJs
