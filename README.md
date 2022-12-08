@@ -19,7 +19,7 @@
 		dados na Web API.
       
 # Anotações/Comandos
-      Ambiente de desenvolvimento: 
+      	Ambiente de desenvolvimento: 
 			-> Vscode
 			-> NodeJs
 
@@ -43,3 +43,6 @@
       
     	Comando para gerar serviço 
       		-> ionic generate service nome_servico
+		
+	 	Ionic Framework
+			-> https://ionicframework.com/
