@@ -1,10 +1,11 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { AlertController, LoadingController } from '@ionic/angular';
-import { DatabaseService } from 'src/app/database.service';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { DatabaseService } from 'src/app/servico/database.service';
 
 import { Produtos } from 'src/app/model/produto.model';
+import { UtilityService } from 'src/app/servico/utility.service';
 
 @Component({
   selector: 'app-home',
@@ -20,38 +21,34 @@ export class HomePage implements OnInit {
     private database: DatabaseService,
 
     //loadingController - Ferramenta do carregando
-    private loadCtrl: LoadingController,
+    // private loadCtrl: LoadingController,
 
     //alertController - Ferramente que cria um alert
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+
+    //toastController - Criar uma mensagem
+    // private toast: ToastController
+
+    private utility: UtilityService
   ) {}
 
   ngOnInit(){
     //Carrega o metodo no inicio da pagina
-    this.carregando();
+    this.utility.carregando("Carregando",500);
     this.database.getProdutos().subscribe(results => this.listaProdutos = results);
       
   }
 
   deletar(id: number){
     try{
-      this.database.delProdutos(id);
+      this.database.delProdutos(id);   
     }finally{
-      location.reload();
+      // Chama a mensagem
+      this.utility.toastando("Item Excluído", "bottom", 1000, "danger");
     }
   }
 
-  //Método do carregando (load)
-  async carregando(){
-    const load = this.loadCtrl.create({
-      mode: 'ios',
-      message: 'Aguarde...',
-      duration: 500
-    });
 
-    (await load).present(); 
-   
-  }
 
   //Método do alertando 
   async alertando(){
@@ -92,7 +89,8 @@ export class HomePage implements OnInit {
             try{
               this.database.postProdutos(item);
             }finally{
-              location.reload();
+              this.utility.toastando("Item Adicionado", 'top', 1000, "success");
+
             }
           }
         }
@@ -101,4 +99,7 @@ export class HomePage implements OnInit {
 
     (await alert).present();
   }
+
+
+
 }

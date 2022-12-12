@@ -13,14 +13,14 @@
       <ion-item-sliding *ngFor="let produto of listaProdutos">
 
       <ion-item>
-        <ion-label>Produto: {{produto.produto}}  /  Quant: {{produto.quantidade}} </ion-label>
+        <ion-label><b>Produto:</b> {{produto.produto}}  /  <b>Quant:</b> {{produto.quantidade}} </ion-label>
       </ion-item>
 
       <ion-item-options >
         <ion-item-option color="danger" >
           <ion-icon (click)="deletar(produto.id)" name="trash-outline"></ion-icon>
         </ion-item-option>
-        
+          
         <ion-item-option color="success">
           <ion-icon name="refresh-outline"></ion-icon>
         </ion-item-option>
