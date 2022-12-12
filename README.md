@@ -17,6 +17,13 @@
 	    
 	    3 - Configurar o formulário (Alert) utilizado pelo fab-button (Botão de Cadastrar) para cadastrar
 		dados na Web API.
+	
+	
+	    Aula 05
+	    1 - Configurar dentro do serviço utility o toast 
+	    	Utilizar tanto o toast como o loading na pagina home através do serviço utility
+
+		
       
 # Anotações/Comandos
       	Ambiente de desenvolvimento: 
