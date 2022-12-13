@@ -21,7 +21,7 @@
 	
 	    Aula 05
 	    1 - Configurar dentro do serviço utility o toast 
-	    	Utilizar tanto o toast como o loading na pagina home através do serviço utility
+	    	Utilizar tanto o toast como o loading na pagina home através do serviço utility.
 
 		
       
