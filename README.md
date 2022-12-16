@@ -20,17 +20,17 @@
 	
 	
 	    Aula 05
-	    -> Configurar dentro do serviço utility o toast 
+	    	Configurar dentro do serviço utility o toast 
 	    Utilizar tanto o toast como o loading na pagina home através do serviço utility.
 		
 		
 	    Aula 06
-	    -> Pesquisar e implementar o actionsheet ao clicar em um item da lista
+	    	Pesquisar e implementar o actionsheet ao clicar em um item da lista
 	    Desenvolver a lógica de forma que ao clicar no botão marcar do actionsheet ele marque o item 
 	    e ao clicar no botão desmarcar ele desmarque o i
 	    
 	    Aula 07
-	    -> Desenvolver no database service o método para atualização dos item
+	    	Desenvolver no database service o método para atualização dos item
 	    Configurar o form.page.ts para utilizar o método do database e atualizar as informações no banco de dados
 	  
 
