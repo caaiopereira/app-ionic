@@ -1,31 +1,40 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { timeStamp } from 'console';
+
 import { Produtos } from '../model/produto.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
-
-  readonly API = 'http://localhost:3000/lista/';
-
   HttpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
-  }; 
+  }
+
+  readonly API = "http://localhost:3000/lista/";
 
   constructor(private http: HttpClient) { }
 
-  getProdutos(){
+  getItem(){
     return this.http.get<Produtos[]>(this.API);
   }
 
-  postProdutos(produto: any){
-    return this.http.post(this.API, JSON.stringify(produto), this.HttpOptions).subscribe();
+  //Metodo para trazer um unico item
+  getOneItem(id: number){
+    return this.http.get<Produtos>(this.API + id);
   }
 
-  delProdutos(id: number){
+  postItem(dados: any){
+    return this.http.post(this.API, JSON.stringify(dados), this.HttpOptions).subscribe()
+  }
+
+  delItem(id: number){
     return this.http.delete(this.API + id).subscribe();
   }
 
-  
+   //Metodo de alteração do status
+  statusItem(item: Produtos){
+    return this.http.put(this.API + item.id, JSON.stringify(item), this.HttpOptions).subscribe();
+  }
 }

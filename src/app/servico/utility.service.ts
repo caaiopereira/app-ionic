@@ -7,35 +7,40 @@ import { LoadingController, ToastController } from '@ionic/angular';
 export class UtilityService {
 
   constructor(
-    //Ferramenta do carregando!
+    //Ferramente do carregando!
     private loading: LoadingController,
-
-    //toastController - Criar uma mensagem
+    
+    //Ferramenta do toast *(Menssagem)
     private toast: ToastController
-  ) { }
+    ) { }
 
-  //Metodo do loading
-  async carregando(message: string, duration: number){
-    const load = this.loading.create({
-      mode: 'ios',
-      message,
-      duration,
-    });
+    //Metodo do loading
+    async carregando(message: string, duration: number){
+      const load = this.loading.create({
+        mode: 'ios',
+        message,
+        duration
+      });
 
-    (await load).present();
+      (await load).present();
+    }
 
-  }
+    //Método do toast 
+    async toastando(message: string, position: "top" | "middle" | "bottom", duration: number, color: string){
+      const toastei = this.toast.create({
+        message,
+        position,
+        duration,
+        color
+      });
+      (await toastei).present();
+      //location.reload();
 
+      setTimeout(this.refresh, 900);
+    }
 
-  async toastando(message:string, position: "top" | "middle" | "bottom" , duration: number, color:string){
-    const toastei = this.toast.create({
-      message,
-      position,
-      duration,
-      color
-    });
-
-    (await toastei).present();
+  //metodo do reload
+  refresh(){
     location.reload();
   }
 }

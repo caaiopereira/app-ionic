@@ -1,28 +1,21 @@
 {
   "lista": [
     {
-      "id": 1,
-      "produto": "Arroz",
-      "quantidade": "5k"
-    },
-    {
-      "id": 2,
-      "produto": "Macarrão",
-      "quantidade": "2k"
-    },
-    {
-      "produto": "Feijão",
-      "quantidade": "2k",
+      "produto": "Abacaxi",
+      "quantidade": "2",
+      "status": false,
       "id": 3
     },
     {
-      "produto": "Carne",
-      "quantidade": "3k",
+      "produto": "Alcatra",
+      "quantidade": "2kg",
+      "status": false,
       "id": 4
     },
     {
-      "produto": "Frango",
-      "quantidade": "2k",
+      "produto": "Macarrão",
+      "quantidade": "1kg",
+      "status": false,
       "id": 5
     }
   ]

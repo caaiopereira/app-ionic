@@ -10,18 +10,27 @@
   <ion-img [src]="image"></ion-img>  
     
     <ion-list >
-      <ion-item-sliding *ngFor="let produto of listaProdutos">
+      <ion-item-sliding  *ngFor="let produto of listaProdutos">
 
-      <ion-item>
-        <ion-label><b>Produto:</b> {{produto.produto}}  /  <b>Quant:</b> {{produto.quantidade}} </ion-label>
+      <ion-item (click)="actionMetod(produto)">
+        <!--Bolinha Branca-->
+        <ion-icon name="radio-button-off" *ngIf="!produto.status"></ion-icon>
+        <ion-label *ngIf="!produto.status"><strong>Produto:</strong> {{produto.produto}} </ion-label>
+        <ion-label *ngIf="!produto.status"><strong>Quant:</strong>  {{produto.quantidade}}</ion-label>
+
+        <!--Bolinha Verde-->
+        <ion-icon name="checkmark-circle" color="success" *ngIf="produto.status"></ion-icon>
+        <ion-label *ngIf="produto.status"><del><strong>Produto:</strong> {{produto.produto}} </del></ion-label>
+        <ion-label *ngIf="produto.status"><del><strong>Quant:</strong> {{produto.quantidade}}</del></ion-label>
       </ion-item>
 
       <ion-item-options >
-        <ion-item-option color="danger" >
-          <ion-icon (click)="deletar(produto.id)" name="trash-outline"></ion-icon>
+        
+        <ion-item-option  color="danger" (click)="deletar(produto.id)">
+          <ion-icon name="trash-outline"></ion-icon>          
         </ion-item-option>
-          
-        <ion-item-option color="success">
+        
+        <ion-item-option color="success" [routerLink]="['/form', produto.id]">
           <ion-icon name="refresh-outline"></ion-icon>
         </ion-item-option>
 

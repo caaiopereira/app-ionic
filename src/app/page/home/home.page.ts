@@ -1,10 +1,8 @@
-
 import { Component, OnInit } from '@angular/core';
-
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { DatabaseService } from 'src/app/servico/database.service';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 
 import { Produtos } from 'src/app/model/produto.model';
+import { DatabaseService } from 'src/app/servico/database.service';
 import { UtilityService } from 'src/app/servico/utility.service';
 
 @Component({
@@ -16,39 +14,25 @@ export class HomePage implements OnInit {
 
   image = "https://cdn.pixabay.com/photo/2015/02/23/20/53/tomatoes-646645_960_720.jpg";
 
+
   listaProdutos: Produtos[] = [];
+
   constructor(
-    private database: DatabaseService,
-
-    //loadingController - Ferramenta do carregando
-    // private loadCtrl: LoadingController,
-
+    //Nosso serviço de banco de dados
+    private DataBase: DatabaseService,
     //alertController - Ferramente que cria um alert
     private alertCtrl: AlertController,
-
-    //toastController - Criar uma mensagem
-    // private toast: ToastController
-
-    private utility: UtilityService
+    //ActionSheet
+    private actionSheetCtrl: ActionSheetController,
+    //Serviço de utilidades 
+    private utilidades: UtilityService   
   ) {}
 
   ngOnInit(){
     //Carrega o metodo no inicio da pagina
-    this.utility.carregando("Carregando",500);
-    this.database.getProdutos().subscribe(results => this.listaProdutos = results);
-      
-  }
-
-  deletar(id: number){
-    try{
-      this.database.delProdutos(id);   
-    }finally{
-      // Chama a mensagem
-      this.utility.toastando("Item Excluído", "bottom", 1000, "danger");
-    }
-  }
-
-
+    this.utilidades.carregando("Aguarde...", 900);
+    this.DataBase.getItem().subscribe(results => this.listaProdutos = results);
+  }  
 
   //Método do alertando 
   async alertando(){
@@ -57,41 +41,46 @@ export class HomePage implements OnInit {
       header: 'Cadastro de Produtos',
       inputs:[
         {
-          name: 'produto',
+          name: 'item',
           type: 'text',
-          placeholder: 'Informe o Produto',
-          
+          placeholder: 'Informe o Produto'
         },
         {
-          name:'quantidade',
+          name:'qtd',
           type: 'text',
           placeholder: 'Informe a Quantidade'
         }
       ],
       buttons: [
-        //Botao de cancelar
+
+        //Botão de cancelar
         {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
-            console.log('CPF CANCELADO');
+            this.utilidades.toastando('Cancelado!', "middle", 900 ,"secondary" );
           }
         },
-        //Botao de cadastrar
+
+        //Botão de cadastrar
         {
           text: 'Cadastrar',
-          handler: (valor) => {
-            // Objeto que irá formar nosso item da lista
+          handler: (form) => {
+            //Objeto que irá forma nosso item da lista
             let item = {
-              produto: valor.produto,
-              quantidade: valor.quantidade
-            }
-            try{
-              this.database.postProdutos(item);
-            }finally{
-              this.utility.toastando("Item Adicionado", 'top', 1000, "success");
+              produto: form.item,
+              quantidade: form.qtd, 
 
-            }
+              //Vai ser a variavel de controle do ngIf
+              status: false     
+            };
+            try{
+              this.DataBase.postItem(item);
+            }catch(err){
+              console.log(err)
+            }finally{
+              this.utilidades.toastando("Item Cadastrado", "top", 900,"success");                           
+            } 
           }
         }
       ]
@@ -100,6 +89,45 @@ export class HomePage implements OnInit {
     (await alert).present();
   }
 
+  //Metodo do botao excluir
+  deletar(id: number){
+
+    try{
+      this.DataBase.delItem(id);  
+    }catch(err){
+      console.log(err);
+    }finally{
+      //Chama a menssagem 
+      this.utilidades.toastando("Item Excluido", "bottom", 900, "danger"); 
+     
+    }  
+  } 
+
+  //Metodo do actionsheet
+  async actionMetod(item: Produtos){
+    const actionSheet = await this.actionSheetCtrl.create({
+      mode: 'ios',
+      header: 'Selecione um Opção:',
+      buttons: [
+        {
+          text: item.status ? 'Desmarcar' : 'Marcar',
+          icon: item.status ? 'radio-button-off' : 'checkmark-circle',
+
+          handler: () => {
+            item.status = !item.status;
+            this.DataBase.statusItem(item);
+          }
+        },
+        {
+          text: "Cancelar",
+          handler: () => {
+            this.utilidades.toastando('Cancelamos o encontro', "middle", 900, "secondary");
+          }
+        }
+      ]
+    }); actionSheet.present();
+  }
 
 
+  
 }
