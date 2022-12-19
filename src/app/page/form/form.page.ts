@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Produtos } from 'src/app/model/produto.model';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { DatabaseService } from 'src/app/servico/database.service';
+import { UtilityService } from 'src/app/servico/utility.service';
 
 @Component({
   selector: 'app-form',
@@ -17,16 +18,12 @@ export class FormPage implements OnInit {
 
   readonly API = "http://localhost:3000/lista/";
   
-  HttpOptions = {
-    headers: new HttpHeaders({'Content-Type' : 'application/json'})
-  }
-
-
   constructor(
     //Essa ferramenta serve para capturar a rota (caminho) que estiver ativo
     private activatedRoute: ActivatedRoute,
     private banco: DatabaseService,
-    private  http: HttpClient
+    private router: Router,
+    private util: UtilityService
   ) { }
 
   ngOnInit() {
@@ -38,10 +35,12 @@ export class FormPage implements OnInit {
     }
 
   }
-
+  
   //Método que chama o serviço de atualização
-  update(form: Produtos){
-    return this.http.put(this.API + this.produto.produto , JSON.stringify(form), this.HttpOptions).subscribe();
+  update(form: any){
+    this.banco.updateItem(form.value, this.routeId);
+    this.router.navigate(['']);
+    this.util.toastando("Item Atualizado com sucesso", "middle", 1000, "medium");
   }
 
 }

@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { timeStamp } from 'console';
 
 import { Produtos } from '../model/produto.model';
 
@@ -36,5 +35,10 @@ export class DatabaseService {
    //Metodo de alteração do status
   statusItem(item: Produtos){
     return this.http.put(this.API + item.id, JSON.stringify(item), this.HttpOptions).subscribe();
+  }
+
+  //Método de atualização
+  updateItem(item: Produtos, id: any){
+    return this.http.put(this.API + id, JSON.stringify(item), this.HttpOptions).subscribe();
   }
 }
