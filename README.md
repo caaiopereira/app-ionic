@@ -60,7 +60,7 @@
 			-> ionic generate page sobre
       
     	Comando para gerar serviço 
-      		-> ionic generate service nome_servico
+      		-> ionic generate service nome_servico.
 		
 	 	Ionic Framework
 			-> https://ionicframework.com/
