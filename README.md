@@ -39,7 +39,7 @@
 # Anotações/Comandos
       	Ambiente de desenvolvimento: 
 			-> Vscode
-			-> NodeJs
+			-> NodeJs.
 
 		Instalação do Ionic: 
 			-> npm install -g @ionic/cli
