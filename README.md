@@ -31,7 +31,7 @@
 	    
 	    Aula 07
 	    	Desenvolver no database service o método para atualização dos item
-	    	Configurar o form.page.ts para utilizar o método do database e atualizar as informações no banco de dados
+	    	Configurar o form.page.ts para utilizar o método do database e atualizar as informações no banco de dados.
 	  
 
 		
